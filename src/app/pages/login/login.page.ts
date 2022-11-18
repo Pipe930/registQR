@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -6,10 +8,42 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
+  public formularioLogin!: FormGroup;
 
-  constructor() { }
+  constructor(
+    private builder: FormBuilder,
+    private alerta: AlertController
+  ) { }
 
-  ngOnInit() {
+  public construirFormulario():void{
+    this.formularioLogin = this.builder.group({
+      correo: new FormControl("", [Validators.required, Validators.email]),
+      contrasenia: new FormControl("", [Validators.required, Validators.minLength(8), Validators.maxLength(16)])
+    })
+  }
+
+  ngOnInit():void {
+    this.construirFormulario();
+  }
+
+  public async alertaExito() {
+    const alert = await this.alerta.create({
+      header: 'Exito',
+      subHeader: 'Mensaje de Exito',
+      message: 'Se inicio la sesion correctamente',
+      buttons: ['Aceptar'],
+    });
+
+    await alert.present();
+  }
+
+  public login(){
+    if(this.formularioLogin.invalid){
+      this.formularioLogin.markAllAsTouched();
+      alert("Faltan datos");
+    } else {
+      this.alertaExito();
+    }
   }
 
 }
