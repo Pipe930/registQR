@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
+import { BaseDatosService } from './../../services/base-datos.service';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,8 @@ export class LoginPage implements OnInit {
 
   constructor(
     private builder: FormBuilder,
-    private alerta: AlertController
+    private alerta: AlertController,
+    private servicioBD: BaseDatosService
   ) { }
 
   public construirFormulario():void{
@@ -43,7 +45,8 @@ export class LoginPage implements OnInit {
       alert("Faltan datos");
     } else {
       this.alertaExito();
+      this.servicioBD.guardarDatos('correo', this.formularioLogin.value.correo);
+      this.servicioBD.guardarDatos('contrasenia', this.formularioLogin.value.contrasenia);
     }
   }
-
 }
