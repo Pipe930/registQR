@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
 
 @Component({
@@ -6,31 +6,85 @@ import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
   templateUrl: './scan-qr.page.html',
   styleUrls: ['./scan-qr.page.scss'],
 })
-export class ScanQRPage implements OnInit {
+export class ScanQRPage implements OnInit, OnDestroy {
 
-  public contenido: string | undefined;
+  public scannerResultado: any;
+  public errorQR: any;
+  public content_visibility = 'hidden';
 
   constructor() { }
 
   ngOnInit() {
+
+  }
+
+  public checkPermission(){
+    let permiso;
+    const checkPermission = async () => {
+      // check or request permission
+      const status = await BarcodeScanner.checkPermission({ force: true });
+
+      if (status.granted) {
+        // the user granted permission
+        return true;
+      }
+
+      return false;
+    };
+
+    checkPermission();
+
+    permiso = checkPermission();
+
+
+    return permiso;
   }
 
   public async startScan(){
-      // Check camera permission
-    // This is just a simple example, check out the better checks below
-    await BarcodeScanner.checkPermission({ force: true });
+    try{
 
-    // make background of WebView transparent
-    // note: if you are using ionic this might not be enough, check below
-    BarcodeScanner.hideBackground();
+      const permission = await this.checkPermission();
+      if(!permission){
+        return;
+      }
 
-    const result = await BarcodeScanner.startScan(); // start scanning and wait for a result
+      await BarcodeScanner.hideBackground();
 
-    // if the result has content
-    if (result.hasContent) {
-      console.log(result.content); // log the raw scanned content
-      this.contenido = result.content;
+      document.querySelector('body')?.classList.add('scanner-active');
+
+      this.content_visibility = 'hidden';
+
+      const result = await BarcodeScanner.startScan();
+
+      console.log(result);
+
+      BarcodeScanner.showBackground();
+      document.querySelector('body')?.classList.remove('scanner-active');
+
+      this.content_visibility = 'show';
+
+      if(result?.hasContent){
+        BarcodeScanner.showBackground();
+        document.querySelector('body')?.classList.remove('scanner-active');
+        this.content_visibility = 'show';
+        this.scannerResultado = result.content;
+      }
+
+    }catch(error){
+      console.log(error);
+      this.stopScan();
     }
+  }
+
+  public stopScan(){
+    BarcodeScanner.showBackground();
+    BarcodeScanner.stopScan();
+    document.querySelector('body')?.classList.remove('scanner-active');
+    this.content_visibility = 'show';
+  }
+
+  ngOnDestroy():void{
+    this.stopScan();
   }
 
 }
