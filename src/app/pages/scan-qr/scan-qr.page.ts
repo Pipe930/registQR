@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
+import { BarcodeScanner, SupportedFormat } from '@capacitor-community/barcode-scanner';
+import { Browser } from '@capacitor/browser';
 
 @Component({
   selector: 'app-scan-qr',
@@ -54,7 +55,9 @@ export class ScanQRPage implements OnInit, OnDestroy {
 
       this.content_visibility = 'hidden';
 
-      const result = await BarcodeScanner.startScan();
+      const result = await BarcodeScanner.startScan({
+        targetedFormats: [SupportedFormat.QR_CODE]
+      });
 
       console.log(result);
 
@@ -72,6 +75,10 @@ export class ScanQRPage implements OnInit, OnDestroy {
       console.log(error);
       this.stopScan();
     }
+  }
+
+  public async resultado(){
+    await Browser.open({ url: this.scannerResultado });
   }
 
   public stopScan(){

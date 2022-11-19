@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { ScanQRPageRoutingModule } from './scan-qr-routing.module';
 
 import { ScanQRPage } from './scan-qr.page';
+import { BaseDatosService } from './../../services/base-datos.service';
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import { ScanQRPage } from './scan-qr.page';
     IonicModule,
     ScanQRPageRoutingModule
   ],
-  declarations: [ScanQRPage]
+  declarations: [ScanQRPage],
+  providers: [BaseDatosService]
 })
 export class ScanQRPageModule {}

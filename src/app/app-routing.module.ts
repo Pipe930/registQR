@@ -9,15 +9,19 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    loadChildren: () => import('./pages/login/login.module').then( module => module.LoginPageModule)
+    loadChildren: () => import('./pages/login/login.module').then( modulo => modulo.LoginPageModule)
   },
   {
     path: 'scan-qr',
-    loadChildren: () => import('./pages/scan-qr/scan-qr.module').then( nodule => nodule.ScanQRPageModule)
+    loadChildren: () => import('./pages/scan-qr/scan-qr.module').then( modulo => modulo.ScanQRPageModule)
   },
   {
     path: 'home',
-    loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule)
+    loadChildren: () => import('./pages/home/home.module').then( modulo => modulo.HomePageModule)
+  },
+  {
+    path: 'register',
+    loadChildren: () => import('./pages/register/register.module').then( modulo => modulo.RegisterPageModule)
   },
 ];
 

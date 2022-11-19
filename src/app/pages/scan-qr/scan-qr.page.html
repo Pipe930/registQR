@@ -17,7 +17,7 @@
       </ion-label>
     </ion-list-header>
     <ion-item>
-      <ion-img src="../../../assets//imgs/qr-code.jpg" alt="imagen QR"></ion-img>
+      <ion-img src="https://www.ocu.org/-/media/ta/images/qr-code.png" alt="imagen QR"></ion-img>
     </ion-item>
     <ion-button
     type="button"
@@ -25,13 +25,18 @@
     expand="block"
     color="primary"
     >Scan QR</ion-button>
-    <ion-item *ngIf="scannerResultado">
+    <ion-item *ngIf="scannerResultado" class="ion-text-wrap">
       <ion-label>
         <h2>
           Resultado del scaner: {{scannerResultado}}
         </h2>
       </ion-label>
     </ion-item>
+    <ion-button
+    color="success"
+    *ngIf="scannerResultado"
+    expand="block"
+    >Ver Resultado</ion-button>
   </ion-list>
 
 </ion-content>
