@@ -1,10 +1,13 @@
-<ion-header>
+<ion-header [style.visibility]="content_visibility">
   <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
     <ion-title>ScanQR</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content [style.visibility]="content_visibility">
   <ion-list>
     <ion-list-header>
       <ion-label>
@@ -14,7 +17,7 @@
       </ion-label>
     </ion-list-header>
     <ion-item>
-      <ion-img src="../../../assets//imgs/qr-code.jpg"></ion-img>
+      <ion-img src="../../../assets//imgs/qr-code.jpg" alt="imagen QR"></ion-img>
     </ion-item>
     <ion-button
     type="button"

@@ -49,7 +49,7 @@ export class LoginPage implements OnInit {
       this.alertaExito();
       this.servicioBD.guardarDatos('correo', this.formularioLogin.value.correo);
       this.servicioBD.guardarDatos('contrasenia', this.formularioLogin.value.contrasenia);
-      this.ruta.navigate(['scan-qr']);
+      this.ruta.navigate(['home']);
     }
   }
 }

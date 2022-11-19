@@ -15,6 +15,10 @@ const routes: Routes = [
     path: 'scan-qr',
     loadChildren: () => import('./pages/scan-qr/scan-qr.module').then( nodule => nodule.ScanQRPageModule)
   },
+  {
+    path: 'home',
+    loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule)
+  },
 ];
 
 @NgModule({

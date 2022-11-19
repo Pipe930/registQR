@@ -15,7 +15,7 @@ export class ScanQRPage implements OnInit, OnDestroy {
   constructor() { }
 
   ngOnInit() {
-
+    this.content_visibility = 'show';
   }
 
   public checkPermission(){
@@ -61,13 +61,11 @@ export class ScanQRPage implements OnInit, OnDestroy {
       BarcodeScanner.showBackground();
       document.querySelector('body')?.classList.remove('scanner-active');
 
-      this.content_visibility = 'show';
+      this.content_visibility = '';
 
       if(result?.hasContent){
-        BarcodeScanner.showBackground();
-        document.querySelector('body')?.classList.remove('scanner-active');
-        this.content_visibility = 'show';
         this.scannerResultado = result.content;
+        console.log(result.content);
       }
 
     }catch(error){
@@ -80,7 +78,7 @@ export class ScanQRPage implements OnInit, OnDestroy {
     BarcodeScanner.showBackground();
     BarcodeScanner.stopScan();
     document.querySelector('body')?.classList.remove('scanner-active');
-    this.content_visibility = 'show';
+    this.content_visibility = '';
   }
 
   ngOnDestroy():void{
