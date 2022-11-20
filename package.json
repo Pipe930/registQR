@@ -30,6 +30,8 @@
     "@ionic/angular": "^6.1.9",
     "@ionic/storage": "^3.0.6",
     "@ionic/storage-angular": "^3.0.6",
+    "@types/qrcode": "^1.5.0",
+    "angularx-qrcode": "^15.0.0",
     "ionicons": "^6.0.3",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",

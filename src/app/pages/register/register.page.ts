@@ -75,7 +75,7 @@ export class RegisterPage implements OnInit {
     }
   }
 
-  ngOnInit() {
+  ngOnInit():void {
   }
 
 }

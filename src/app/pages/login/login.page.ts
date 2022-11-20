@@ -41,14 +41,14 @@ export class LoginPage implements OnInit {
     await alert.present();
   }
 
-  public login(){
+  public login():void{
+    let formulario = this.formularioLogin.value;
+
     if(this.formularioLogin.invalid){
       this.formularioLogin.markAllAsTouched();
       alert("Faltan datos");
     } else {
       this.alertaExito();
-      this.servicioBD.guardarDatos('correo', this.formularioLogin.value.correo);
-      this.servicioBD.guardarDatos('contrasenia', this.formularioLogin.value.contrasenia);
       this.ruta.navigate(['home']);
     }
   }

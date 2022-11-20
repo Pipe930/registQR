@@ -11,7 +11,9 @@ export class BaseDatosService {
   constructor(
     private data: Storage
   ) {
-    this.crearDataBase();
+    if(this.dataBase == null){
+      this.crearDataBase();
+    }
    }
 
   public crearDataBase():void{

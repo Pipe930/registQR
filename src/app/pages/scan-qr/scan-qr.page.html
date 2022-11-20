@@ -8,7 +8,7 @@
 </ion-header>
 
 <ion-content [style.visibility]="content_visibility">
-  <ion-list>
+  <ion-list [inset]="true">
     <ion-list-header>
       <ion-label>
         <h1>
@@ -25,17 +25,21 @@
     expand="block"
     color="primary"
     >Scan QR</ion-button>
-    <ion-item *ngIf="scannerResultado" class="ion-text-wrap">
-      <ion-label>
+    <ion-item *ngIf="scannerResultado">
+      <ion-label class="ion-text-wrap">
         <h2>
-          Resultado del scaner: {{scannerResultado}}
+          Resultado del scaner:
         </h2>
+        <p>
+          {{scannerResultado}}
+        </p>
       </ion-label>
     </ion-item>
     <ion-button
     color="success"
     *ngIf="scannerResultado"
     expand="block"
+    (click)="resultado()"
     >Ver Resultado</ion-button>
   </ion-list>
 

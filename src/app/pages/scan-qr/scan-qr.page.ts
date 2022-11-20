@@ -12,6 +12,8 @@ export class ScanQRPage implements OnInit, OnDestroy {
   public scannerResultado: any;
   public errorQR: any;
   public content_visibility = 'hidden';
+  public fehchaActual: string = '';
+  public horaActual: string = '';
 
   constructor() { }
 
@@ -68,6 +70,8 @@ export class ScanQRPage implements OnInit, OnDestroy {
 
       if(result?.hasContent){
         this.scannerResultado = result.content;
+        this.fehchaActual = new Date().toDateString();
+        this.horaActual = new Date().toTimeString();
         console.log(result.content);
       }
 
@@ -79,6 +83,9 @@ export class ScanQRPage implements OnInit, OnDestroy {
 
   public async resultado(){
     await Browser.open({ url: this.scannerResultado });
+    Browser.addListener('browserFinished', () => {
+      console.log("Browser Finished")
+    });
   }
 
   public stopScan(){
