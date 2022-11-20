@@ -3,44 +3,52 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>ScanQR</ion-title>
+    <ion-title>
+      Scan QR
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [style.visibility]="content_visibility">
-  <ion-list [inset]="true">
-    <ion-list-header>
-      <ion-label>
-        <h1>
-          Scanear QR
-        </h1>
-      </ion-label>
-    </ion-list-header>
-    <ion-item>
-      <ion-img src="https://www.ocu.org/-/media/ta/images/qr-code.png" alt="imagen QR"></ion-img>
-    </ion-item>
-    <ion-button
-    type="button"
-    (click)="startScan()"
-    expand="block"
-    color="primary"
-    >Scan QR</ion-button>
-    <ion-item *ngIf="scannerResultado">
-      <ion-label class="ion-text-wrap">
-        <h2>
-          Resultado del scaner:
-        </h2>
-        <p>
-          {{scannerResultado}}
-        </p>
-      </ion-label>
-    </ion-item>
-    <ion-button
-    color="success"
-    *ngIf="scannerResultado"
-    expand="block"
-    (click)="resultado()"
-    >Ver Resultado</ion-button>
-  </ion-list>
+  <ion-card>
+    <ion-img src="https://www.ocu.org/-/media/ta/images/qr-code.png" alt="imagen QR"></ion-img>
+    <ion-card-header>
+      <ion-card-title class="ion-text-center">
+        Scanear QR
+      </ion-card-title>
+      <ion-card-subtitle>Descripcion</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-text>
+        1.- Para poder scanear un QR presione el boton Scan QR
+        <hr> 2.- Le pedira los permisos, los acepta
+        <hr> 3.- Apunte hacia el QR a scanear
+        <hr> 4.- Le mostrara el resultado abajo
+      </ion-text>
+      <ion-button
+      type="button"
+      (click)="startScan()"
+      expand="block"
+      color="primary"
+      >Scan QR</ion-button>
+      <ion-item *ngIf="scannerResultado">
+        <ion-label class="ion-text-wrap">
+          <h2>
+            Resultado del scaner:
+          </h2>
+          <p>
+            {{scannerResultado}}
+          </p>
+        </ion-label>
+      </ion-item>
+      <ion-button
+      color="success"
+      *ngIf="scannerResultado"
+      expand="block"
+      (click)="resultado()"
+      >Ver Resultado</ion-button>
+    </ion-card-content>
+  </ion-card>
 
 </ion-content>
