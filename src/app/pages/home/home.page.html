@@ -1,4 +1,4 @@
-<ion-menu contentId="main-content" type="push">
+<ion-menu contentId="main-content" [type]="'overlay'">
   <ion-header>
     <ion-toolbar>
       <ion-title>
@@ -28,17 +28,14 @@
 </ion-menu>
 <div class="ion-page" id="main-content">
   <ion-header>
-    <ion-toolbar>
+    <ion-toolbar color="primary">
       <ion-buttons slot="start">
         <ion-menu-button></ion-menu-button>
       </ion-buttons>
       <ion-title>Duoc UC</ion-title>
     </ion-toolbar>
   </ion-header>
-  <ion-content class="ion-padding">
-    <ion-label>
-      Tap the button in the toolbar to open the menu.
-    </ion-label>
+  <ion-content class="ion-padding" [fullscreen]="true">
     <ion-card>
       <ion-img src="https://seeklogo.com/images/D/duoc-uc-logo-F1437952BE-seeklogo.com.png" alt="Imagen Duoc Uc"></ion-img>
       <ion-card-header>
@@ -52,5 +49,12 @@
         </ion-text>
       </ion-card-content>
     </ion-card>
+    <ion-label class="ion-text-wrap">
+      <h2>
+        <ion-title>
+          Bienvenido a RegistQR
+        </ion-title>
+      </h2>
+    </ion-label>
   </ion-content>
 </div>

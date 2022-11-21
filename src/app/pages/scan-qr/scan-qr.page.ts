@@ -17,8 +17,10 @@ export class ScanQRPage implements OnInit, OnDestroy {
 
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit():void {
     this.content_visibility = 'show';
+    console.log(this.fehchaActual);
+    console.log(this.horaActual);
   }
 
   public checkPermission(){
@@ -70,8 +72,8 @@ export class ScanQRPage implements OnInit, OnDestroy {
 
       if(result?.hasContent){
         this.scannerResultado = result.content;
-        this.fehchaActual = new Date().toDateString();
-        this.horaActual = new Date().toTimeString();
+        this.fehchaActual = new Date().toLocaleDateString();
+        this.horaActual = new Date().toLocaleTimeString();
         console.log(result.content);
       }
 
@@ -86,6 +88,10 @@ export class ScanQRPage implements OnInit, OnDestroy {
     Browser.addListener('browserFinished', () => {
       console.log("Browser Finished")
     });
+  }
+
+  public eliminarResultado(){
+    this.scannerResultado = null;
   }
 
   public stopScan(){

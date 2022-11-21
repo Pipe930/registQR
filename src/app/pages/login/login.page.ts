@@ -50,6 +50,8 @@ export class LoginPage implements OnInit {
     await alert.present();
   }
 
+
+
   public async alertaError(){
     const alert = await this.alerta.create({
       header: 'Error',
