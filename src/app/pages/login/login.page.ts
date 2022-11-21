@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { AlertController } from '@ionic/angular';
 import { BaseDatosService } from './../../services/base-datos.service';
 import { Router } from '@angular/router';
+import { User } from './../../module/user';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +11,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-  public formularioLogin!: FormGroup;
+  public formularioLogin: FormGroup | any;
+  public usuario!: User;
 
   constructor(
     private builder: FormBuilder,
@@ -30,12 +32,29 @@ export class LoginPage implements OnInit {
     this.construirFormulario();
   }
 
+  ionViewWillEnter():void{
+    this.servicioBD.obtenerDatos('user')?.subscribe(resultadoPeticion => {
+      this.usuario = JSON.parse(resultadoPeticion);
+    });
+  }
+
   public async alertaExito() {
     const alert = await this.alerta.create({
       header: 'Exito',
       subHeader: 'Mensaje de Exito',
       message: 'Se inicio la sesion correctamente',
       buttons: ['Aceptar'],
+    });
+
+    await alert.present();
+  }
+
+  public async alertaError(){
+    const alert = await this.alerta.create({
+      header: 'Error',
+      subHeader: 'Mensaje de Error',
+      message: 'Los datos no son validos',
+      buttons: ['Ok'],
     });
 
     await alert.present();
@@ -48,8 +67,21 @@ export class LoginPage implements OnInit {
       this.formularioLogin.markAllAsTouched();
       alert("Faltan datos");
     } else {
-      this.alertaExito();
-      this.ruta.navigate(['home']);
+      if(this.usuario.email == formulario.correo && this.usuario.password == formulario.contrasenia){
+        this.alertaExito();
+        this.formularioLogin.reset();
+        this.ruta.navigate(['home']);
+      } else {
+        this.alertaError();
+      }
     }
+  }
+
+  get correo(){
+    return this.formularioLogin.get('correo');
+  }
+
+  get contrasenia(){
+    return this.formularioLogin.get('contrasenia');
   }
 }

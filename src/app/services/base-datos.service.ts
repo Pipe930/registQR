@@ -6,7 +6,7 @@ import { from } from 'rxjs';
   providedIn: 'root'
 })
 export class BaseDatosService {
-  public dataBase: Storage | null = null;
+  private dataBase: Storage | null = null;
 
   constructor(
     private data: Storage
@@ -31,6 +31,15 @@ export class BaseDatosService {
         console.log("Se guardaron los datos con exito");
         console.log(resultado);
       });
+    }
+  }
+
+  public obtenerDatos(key: string){
+    if(!this.dataBase){
+      console.log("La base de datos no se creo");
+       return;
+    } else {
+      return from(this.dataBase.get(key));
     }
   }
 }

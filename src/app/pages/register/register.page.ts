@@ -11,7 +11,7 @@ import { BaseDatosService } from './../../services/base-datos.service';
   styleUrls: ['./register.page.scss'],
 })
 export class RegisterPage implements OnInit {
-  public formularioRegistro!: FormGroup;
+  public formularioRegistro: FormGroup | any;
   public usuario!: User;
 
   constructor(
@@ -70,9 +70,30 @@ export class RegisterPage implements OnInit {
       this.alertaError();
     } else {
       this.servicioBD.guardarDatos('user', JSON.stringify(this.usuario));
+      this.formularioRegistro.reset();
       this.alertaExito();
       this.ruta.navigate(['login']);
     }
+  }
+
+  get nombre(){
+    return this.formularioRegistro.get('nombre');
+  }
+
+  get apellido(){
+    return this.formularioRegistro.get('apellido');
+  }
+
+  get nombre_usuario(){
+    return this.formularioRegistro.get('nombre_usuario');
+  }
+
+  get correo(){
+    return this.formularioRegistro.get('correo');
+  }
+
+  get contrasenia(){
+    return this.formularioRegistro.get('contrasenia');
   }
 
   ngOnInit():void {

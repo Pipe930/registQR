@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>Registro</ion-title>
+    <ion-title>Regist QR</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -20,22 +20,46 @@
       <ion-item>
         <ion-label position="floating">Nombre</ion-label>
         <ion-input type="text" formControlName="nombre"></ion-input>
+        <div class="container-message-errors" *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
+          <ion-note color="danger" *ngIf="nombre.errors.required">Este campo es requerido</ion-note>
+          <ion-note color="danger" *ngIf="nombre.errors.minlength">Tiene que ser minimo 4 caracteres</ion-note>
+          <ion-note color="danger" *ngIf="nombre.errors.maxlength">Tiene que ser maximo 20 caracteres</ion-note>
+        </div>
       </ion-item>
       <ion-item>
         <ion-label position="floating">Apellido</ion-label>
         <ion-input type="text" formControlName="apellido"></ion-input>
+        <div class="container-message-errors" *ngIf="apellido.invalid && (apellido.dirty || apellido.touched)">
+          <ion-note color="danger" *ngIf="apellido.errors.required">Este campo es requerido</ion-note>
+          <ion-note color="danger" *ngIf="apellido.errors.minlength">Tiene que ser minimo 4 caracteres</ion-note>
+          <ion-note color="danger" *ngIf="apellido.errors.maxlength">Tiene que ser maximo 20 caracteres</ion-note>
+        </div>
       </ion-item>
       <ion-item>
         <ion-label position="floating">Nombre de Usuario</ion-label>
         <ion-input type="text" formControlName="nombre_usuario"></ion-input>
+        <div class="container-message-errors" *ngIf="nombre_usuario.invalid && (nombre_usuario.dirty || nombre_usuario.touched)">
+          <ion-note color="danger" *ngIf="nombre_usuario.errors.required">Este campo es requerido</ion-note>
+          <ion-note color="danger" *ngIf="nombre_usuario.errors.minlength">Tiene que ser minimo 4 caracteres</ion-note>
+          <ion-note color="danger" *ngIf="nombre_usuario.errors.maxlength">Tiene que ser maximo 20 caracteres</ion-note>
+        </div>
       </ion-item>
       <ion-item>
         <ion-label position="floating">Correo</ion-label>
         <ion-input type="email" formControlName="correo"></ion-input>
+        <div class="container-message-errors" *ngIf="correo.invalid && (correo.dirty || correo.touched)">
+          <ion-note color="danger" *ngIf="correo.errors.required">Este campo es requerido</ion-note>
+          <ion-note color="danger" *ngIf="correo.errors.email">Tiene que ingresar un direccion de correo valida</ion-note>
+        </div>
       </ion-item>
       <ion-item>
         <ion-label position="floating">Contraseña</ion-label>
         <ion-input type="password" formControlName="contrasenia"></ion-input>
+        <div class="container-message-errors" *ngIf="contrasenia.invalid && (contrasenia.dirty || contrasenia.touched)">
+          <ion-note color="danger" *ngIf="contrasenia.errors.required">Este campo es requerido</ion-note>
+          <ion-note color="danger" *ngIf="contrasenia.errors.minlength">Tiene que ser minimo 8 caracteres</ion-note>
+          <ion-note color="danger" *ngIf="contrasenia.errors.maxlength">Tiene que ser maximo 16 caracteres</ion-note>
+        </div>
       </ion-item>
       <ion-button
       color="success"

@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title>login</ion-title>
+    <ion-title>Regist QR</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -9,9 +9,9 @@
     <ion-card-header>
       <ion-card-title>
         <ion-label>
-          <h2>
+          <h1>
             Login
-          </h2>
+          </h1>
         </ion-label>
       </ion-card-title>
     </ion-card-header>
@@ -22,10 +22,19 @@
           <ion-item>
             <ion-label position="floating">Correo</ion-label>
             <ion-input type="email" formControlName="correo"></ion-input>
+            <div class="container-message-errors" *ngIf="correo.invalid && (correo.dirty || correo.touched)">
+              <ion-note color="danger" *ngIf="correo.errors.required">Este campo es requerido</ion-note>
+              <ion-note color="danger" *ngIf="correo.errors.email">Tiene que ingresar un direccion de correo valida</ion-note>
+            </div>
           </ion-item>
           <ion-item>
             <ion-label position="floating">Contraseña</ion-label>
             <ion-input type="password" formControlName="contrasenia"></ion-input>
+            <div class="container-message-errors" *ngIf="contrasenia.invalid && (contrasenia.dirty || contrasenia.touched)">
+              <ion-note color="danger" *ngIf="contrasenia.errors.required">Este campo es requerido</ion-note>
+              <ion-note color="danger" *ngIf="contrasenia.errors.minlength">Tiene que ser minimo 8 caracteres</ion-note>
+              <ion-note color="danger" *ngIf="contrasenia.errors.maxlength">Tiene que ser maximo 16 caracteres</ion-note>
+            </div>
           </ion-item>
           <ion-button
           color="success"
