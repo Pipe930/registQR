@@ -13,6 +13,7 @@ import { User } from './../../module/user';
 export class LoginPage implements OnInit {
   public formularioLogin: FormGroup | any;
   public usuario!: User;
+  public token: string = 'true';
 
   constructor(
     private builder: FormBuilder,
@@ -70,6 +71,7 @@ export class LoginPage implements OnInit {
       if(this.usuario.email == formulario.correo && this.usuario.password == formulario.contrasenia){
         this.alertaExito();
         this.formularioLogin.reset();
+        sessionStorage.setItem('token', this.token);
         this.ruta.navigate(['home']);
       } else {
         this.alertaError();

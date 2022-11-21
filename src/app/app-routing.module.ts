@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AutenticationGuard } from './guards/autentication.guard';
 
 const routes: Routes = [
   {
@@ -17,7 +18,8 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    loadChildren: () => import('./pages/home/home.module').then( modulo => modulo.HomePageModule)
+    loadChildren: () => import('./pages/home/home.module').then( modulo => modulo.HomePageModule),
+    canActivate: [AutenticationGuard]
   },
   {
     path: 'register',
@@ -25,7 +27,7 @@ const routes: Routes = [
   },
   {
     path: 'generate-qr',
-    loadChildren: () => import('./pages/generate-qr/generate-qr.module').then( m => m.GenerateQRPageModule)
+    loadChildren: () => import('./pages/generate-qr/generate-qr.module').then( modulo => modulo.GenerateQRPageModule)
   },
 ];
 
